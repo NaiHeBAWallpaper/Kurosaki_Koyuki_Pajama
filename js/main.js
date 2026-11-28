@@ -47,7 +47,8 @@ const subtitleLocales = {
 	Chinese: 'zh-Hans',
 	TraditionalChinese: 'zh-Hant',
 	Japanese: 'ja',
-	Korean: 'ko'
+	Korean: 'ko',
+	Thai: 'th'
 };
 let isVoicelinePlaying = false;
 let currentAnimationType = null; // null = 无动画, 'headpat' = 摸头, 'voiceline' = 语音, 'handFollow' = 手部跟随
@@ -66,21 +67,22 @@ const AUDIO_DETAIL = [
 				"私の後でやってくださいっていったのに！"
 			],
 			English: [
-				"Aaah!? Why did you use that move now!!",
-				"I told you to wait until after I was done!"
+				"Ahh! Why would you use that then?!",
+				"I told you to do it AFTER I went!"
 			],
 			Chinese: [
 				"啊啊！？为什么现在出那招啊！！",
 				"明明都说了等我放完之后您再接上的！"
 			],
 			TraditionalChinese: [
-				"啊啊！？為什麼現在出那招啊！！",
-				"明明都說了等我放完之後您再接上的！"
+				"啊啊！為什麼現在放那招啊！！",
+				"明明說過要在我之後再放的啊！"
 			],
 			Korean: [
-				"아아! 왜 지금 그 움직임을 사용했지!!",
-				"내가 끝낼 때까지 기다리라고 했잖아!"
-			]
+				"아아! 왜 지금 그걸 내냐고요!!",
+				"제가 먼저 낸 다음에 내라고 말씀드렸잖아요!"
+			],
+			Thai: ["โอ๊ย! ทำไมถึงใช้ ตอนนี้กันล่ะคะ!!","บอกแล้วไงว่าให้ฉันใช้ก่อน! คุณครูค่อยใช้น่ะค่ะ!"]
 		}
 	},
 	{
@@ -104,7 +106,8 @@ const AUDIO_DETAIL = [
 			Korean: [
 				"내 완벽한 계획을 망치고 싶니!?",
 				"내 완벽한 계획을 망치려고 해?"
-			]
+			],
+			Thai: ["คุณครูคิดจะทำให้แผนที่สมบูรณ์แบบของฉันพังเหรอคะ!?","คุณครูคิดจะทำให้แผนที่สมบูรณ์แบบของฉันพังเหรอคะ!?"]
 		}
 	},
 	{
@@ -114,45 +117,47 @@ const AUDIO_DETAIL = [
 				"それを言うなら先生の方がコインを多く出してる……？"
 			],
 			English: [
-				"...Eh? That's a different story?",
-				"Wait, you're saying... Sensei is the one putting in more coins...?"
+				"...Huh? That's a different issue entirely?",
+				"If I really want to go there... Sensei's the one who spent more coins...?"
 			],
 			Chinese: [
 				"……诶？那是两码事吧？",
 				"要这么说的话，确实是老师投的币比较多……？"
 			],
 			TraditionalChinese: [
-				"……誒？那是兩碼事吧？",
-				"要這麼說的話，確實是老師投的幣比較多……？"
+				"……咦？那個和這個是兩回事？",
+				"真要說的話，老師出的代幣更多……？"
 			],
 			Korean: [
-				"그건 다른 이야기야?",
-				"잠깐, 당신은... 선생님가 더 많은 동전을 넣는 거라고..."
-			]
+				"……예? 그것과 이건 별개의 이야기?",
+				"그렇게 따지면 선생님 쪽이 코인은 더 많이 냈다고요?"
+			],
+			Thai: ["คะ...? เรื่องนั้นกับเรื่องนี้ มันคนละเรื่องกันเหรอ?","ถ้าพูดแบบนั้น ทางคุณครูเป็นฝ่าย ออกเหรียญมากกว่างั้นเหรอคะ?"]
 		}
 	},
 	{
 		dialog: {
 			Japanese: [
 				"うーん……それはそう、ですけど……。",
-				"むぅ……休戦にしましょう！一时休戦！"
+				"むぅ……休戦にしましょう！一時休戦！"
 			],
 			English: [
-				"Ugh... I mean, you're not wrong, but...",
-				"Muu... Let's call a truce! A temporary truce!"
+				"Hmm... Well, that IS true, but...",
+				"All righty, let's call it even! Temporary truce!"
 			],
 			Chinese: [
 				"唔……话是这么说没错啦……。",
 				"唔唔……那我们休战吧！暂时休战！"
 			],
 			TraditionalChinese: [
-				"唔……話是這麼說沒錯啦……。",
-				"唔唔……那我們休戰吧！暫時休戰！"
+				"唔嗯……那倒是沒錯啦……",
+				"唔……休戰吧！暫時休戰！"
 			],
 			Korean: [
-				"틀리지 않겠지만...",
-				"무우, 일시적인 휴전!"
-			]
+				"으음…… 그건 그렇긴 하지만…….",
+				"그럼 쌤쌤으로 하죠! 일단 휴전!"
+			],
+			Thai: ["อืม... แต่ถึงอย่างนั้นก็เถอะ...","งั้นถือว่าเสมอกันแล้วกันนะคะ! สงบศึกก่อนแล้วกัน!"]
 		}
 	},
 	{
@@ -163,9 +168,9 @@ const AUDIO_DETAIL = [
 				"……にはは。"
 			],
 			English: [
-				"That's the spirit! I'll definitely nail it next time!",
+				"Right! This next run is going to be the one! I just feel it!!",
 				"...Nihaha!",
-				"...Nihaha."
+				"...Nihahaha..."
 			],
 			Chinese: [
 				"没关系！下次我一定会表现得很完美的！",
@@ -173,15 +178,16 @@ const AUDIO_DETAIL = [
 				"……呢嘻嘻。"
 			],
 			TraditionalChinese: [
-				"沒關係！下次我一定會表現得很完美的！",
-				"……呢嘻嘻！",
-				"……呢嘻嘻。"
+				"說的也是！我下次絕對會發揮得更好的！",
+				"……尼哈哈！",
+				"……尼哈哈。"
 			],
 			Korean: [
-				"그게 정신이야, 다음번엔 잘 할 거야!",
-				"...니하!",
-				"...니하하"
-			]
+				"맞아요! 다음번엔 진짜 잘 될 테니까요!!",
+				"……니하하!",
+				"……니하하하……."
+			],
+			Thai: ["ใช่แล้วค่ะ! คราวหน้าจะต้อง ไปได้สวยแน่นอนค่ะ!","วะฮ่าฮ่า...!","วะฮ่าฮ่าฮ่า...!"]
 		}
 	}
 ];
@@ -294,7 +300,7 @@ function playVoiceline() {
 			track.play().catch(finish);
 
 			if (dialogBox) {
-				textbox.textContent = dialog[window.selectedLanguage][index];
+				textbox.textContent = getSubtitleText(dialog, window.selectedLanguage, index);
 				textbox.style.opacity = 1;
 			}
 		},
@@ -523,6 +529,16 @@ function setMouse(event) {
 	return { x: ax - canvas.width * positionX, y: ay - canvas.height * positionY };
 }
 
+function getSubtitleText(dialog, language, index) {
+	let text = dialog?.[language]?.[index];
+	if (text == null && language === 'Thai') {
+		language = 'English';
+		text = dialog?.[language]?.[index];
+	}
+	textbox.lang = subtitleLocales[language];
+	return text ?? "";
+}
+
 function updateSubtitleLanguage() {
 	let language = subtitleLanguagePreference;
 	if (language === 'auto') {
@@ -536,6 +552,8 @@ function updateSubtitleLanguage() {
 			language = 'Japanese';
 		} else if (primary === 'ko' || primary === 'korean' || primary === 'koreana') {
 			language = 'Korean';
+		} else if (primary === 'th' || primary === 'thai') {
+			language = 'Thai';
 		} else {
 			language = 'English';
 		}
@@ -545,7 +563,7 @@ function updateSubtitleLanguage() {
 	window.selectedLanguage = language;
 	textbox.lang = subtitleLocales[language];
 	const clip = currentTracks.at(-1);
-	if (dialogBox && clip) textbox.textContent = clip.dialog[language][clip.index];
+	if (dialogBox && clip) textbox.textContent = getSubtitleText(clip.dialog, language, clip.index);
 }
 
 function init() {
